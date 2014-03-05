@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Application Form</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                     <h:form>
+
+                <p:growl id="growl" sticky="true" showDetail="true"  />
+
+                <p:wizard flowListener="#{edu.MUM.ComproApplicationForm.Control.userWizard.onFlowProcess}" style="alignment-adjust: middle">
+                    <p:tab id="start" title="Start" >
+
+                        <p:panel header="Application Overview"  style="alignment-adjust: middle" >
+
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid" style="font-size: 14px">
+
+                            <p>
+                                Thank you for applying for the Master of Science in Computer Science Program.
+                                Since you have successfully registered with us, you can return to this page as many times as
+                                you need to complete all the required information. 
+                            </p>
+                            <p>
+                                The application has been divided into
+                                seven sections for your convenience and ease of use.
+                            </p>
+                            <p style="margin-left:30px;">
+                                <ul>
+                                    <li>Start</li>
+                                    <li>Personal Data</li>
+                                    <li>English Proficiency</li>
+                                    <li>Education History</li>
+                                    <li>Professional Experience</li>
+                                    <li>Self Study</li>
+                                    <li>Select Program</li>
+                                </ul>
+                            </p>
+                            <p>
+                                As you provide your information to complete this application, you will be guided through
+                                the sections sequentially.
+                            </p>
+                            <p>
+                                Each time you complete a section and click on the right arrow button your information will
+                                be saved.
+                            </p>
+                            <p>
+                                When you have successfully completed all the sections, the Select Program tab will be activated.
+                                On this page you will be able to sign your application electronically and submit your application.
+                            </p>
+                            <p>
+                                <b>Important</b> When you click the submit button, you will no longer be able to change the data.
+                                If your submitted application gets approved for phase 2, you will receive instructions on how
+                                to take the online programming
+                                test. Here is a link to the <a target="_blank" href="http://mscs.mum.edu/application-steps.html">
+                                    Application Steps</a>.
+                            </p>
+                            <p>
+                                The information you supply below will be kept confidential.
+                            </p>
+                            <p>
+                                For information about the selection criteria, 
+                                please see <a target="_blank" href="http://mscs.mum.edu/requirements.html">
+                                    program requirements</a> page. 
+                                We kindly thank you for all your time and attention as you complete this process. 
+                                Good luck to you!
+                            </p>
+                            <p>
+                                If you have trouble filling out the form, please email Ms. Bahina at 
+                                <a href="mailto:intadmis4@mum.edu" target="_blank">intadmis4@mum.edu</a>
+                            </p>
+
+                            </h:panelGrid>
+
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="personal" title="Personal Data">
+
+                        <p:panel header="Previous Application"  style="width: 100%" >
+                            hi
+                        </p:panel>
+                    
+                        <p:panel header="Personal Details"  style="width: 100%" >
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+                                <h:outputText value="Firstname: *" styleClass="requiredLbl"/>
+                                <p:inputText required="true" label="Firstname"
+                                             value="#{userWizard.user.firstName}" />
+
+                                <h:outputText value="Lastname: *" styleClass="requiredLbl" />
+                                <p:inputText required="true" label="Lastname"
+                                             value="#{userWizard.user.lastName}" />
+
+                                <h:outputText value="Age: " styleClass="optionalLbl"/>
+                                <p:inputText value="#{userWizard.user.age}" />
+
+                                <h:outputText value="Skip to last: " styleClass="optionalLbl"/>
+                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                            </h:panelGrid>
+
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="address" title="Address">
+                        <p:panel header="Adress Details"  style="width: 100%" >
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Street: " styleClass="requiredLbl"/>
+                                <p:inputText value="#{userWizard.user.addrLine1}" />
+
+                                <h:outputText value="Postal Code: " styleClass="requiredLbl"/>
+                                <p:inputText value="#{userWizard.user.addrZip}" />
+
+                                <h:outputText value="City: " styleClass="requiredLbl"/>
+                                <p:inputText value="#{userWizard.user.addrCity}" />
+
+                                <h:outputText value="Skip to last: " styleClass="optionalLbl"/>
+                                <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="contact" title="Contact" >
+                        <p:panel header="Contact Information"  style="width: 100%">
+
+                            <h:messages errorClass="error"/>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Email: *" styleClass="requiredLbl"/>
+                                <p:inputText required="true" label="Email"
+                                             value="#{userWizard.user.email}" />
+
+                                <h:outputText value="Phone: " styleClass="requiredLbl"/>
+                                <p:inputText value="#{userWizard.user.mobilePhone}"/>
+
+                                <h:outputText value="Additional Info: " styleClass="requiredLbl"/>
+                                <p:inputText value="#{userWizard.user.info}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="confirm" title="Confirmation">
+                        <p:panel header="Confirmation" style="width: 100%">
+
+                            <h:panelGrid id="confirmation" columns="6">
+                                <h:outputText value="Firstname: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.firstName}" />
+
+                                <h:outputText value="Lastname: " styleClass="requiredLbl"/>
+                                <h:outputText  styleClass="outputLabel"
+                                               value="#{userWizard.user.lastName}"/>
+
+                                <h:outputText value="Age: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.age}" />>
+
+                                <h:outputText value="Street: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.addrLine1}" />
+
+                                <h:outputText value="Postal Code: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.addrZip}" />
+
+                                <h:outputText value="City: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.addrCity}" />
+
+                                <h:outputText value="Email: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.email}" />
+
+                                <h:outputText value="Phone " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.mobilePhone}"/>
+
+                                <h:outputText value="Info: " styleClass="requiredLbl"/>
+                                <h:outputText styleClass="outputLabel"
+                                              value="#{userWizard.user.info}" />
+
+                                <h:outputText />
+                                <h:outputText />
+                            </h:panelGrid>
+
+                            <p:commandButton value="Submit" update="growl" 
+                                             actionListener="#{userWizard.save}"/>
+
+                        </p:panel>
+                    </p:tab>
+
+                </p:wizard>
+            </h:form>
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
